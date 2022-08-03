@@ -16,8 +16,8 @@ import {
     ButtonContainer
 } from './styles';
 
-import { Alert, KeyboardAvoidingView, TouchableOpacity, View } from 'react-native';
-import ButtonMain from '../../components/elements/button/buttonMain';
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableOpacity, View } from 'react-native';
+import ButtonMain from '../../../components/elements/button/buttonMain';
 
 export default function Cadastrar({ navigation }: { navigation: NativeStackNavigationProp<any,any> }) {
 
@@ -28,6 +28,7 @@ export default function Cadastrar({ navigation }: { navigation: NativeStackNavig
     const [loading, setLoading] = useState(false);
 
     function handleNewAccount() {
+        Keyboard.dismiss();
 
         if(!email) return Alert.alert("Conta", "Preencha o email corretamente");
 
@@ -46,7 +47,7 @@ export default function Cadastrar({ navigation }: { navigation: NativeStackNavig
 
     return (
         <Container>
-            <KeyboardAvoidingView behavior="position" style={{flex: 1}} >
+            <KeyboardAvoidingView behavior="padding" style={{flex: 1, justifyContent: "center"}} >
                 <StatusBar style='auto' />
                 <View style={{alignItems: "center"}}>
                     <Image source={require('./assets/xcomo-fazer-cadastro-no-pat.png.pagespeed.ic.xBJeg2Fiq5.webp')} />
@@ -55,13 +56,13 @@ export default function Cadastrar({ navigation }: { navigation: NativeStackNavig
                 <LoginContainer>
                     <LoginForm>
                         <Text>Email:</Text>
-                        <TextInput onChangeText={setEmail} />
+                        <TextInput onChangeText={setEmail} keyboardType="email-address" textContentType="emailAddress" autoCapitalize='none' />
 
                         <Text>Senha:</Text>
-                        <TextInput secureTextEntry={true} onChangeText={setSenha} />
+                        <TextInput secureTextEntry={true} onChangeText={setSenha} autoCapitalize='none' textContentType="newPassword" />
 
                         <Text>Confirmar senha:</Text>
-                        <TextInput secureTextEntry={true} onChangeText={setSenhaConfirmar} />
+                        <TextInput secureTextEntry={true} onChangeText={setSenhaConfirmar} autoCapitalize='none' textContentType="newPassword" />
 
                         <ButtonMain title="Cadastrar" isLoading={loading} onClick={handleNewAccount} />
 

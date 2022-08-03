@@ -1,44 +1,50 @@
+import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
     flex: 1;
     align-items: center;
+    justify-content: center;
     background-color: white;
     padding-top: 80px;
 `;
 
 export const Image = styled.Image`
     width: 300px;
-    height: 90px;
+    height: 200px;
 `;
 
 export const LoginContainer = styled.View`
     align-items: center;
-    margin-top: 20%;
-    width: 70%;
+    max-width: 100%;
+    margin-top: 15%;
 `;
 
 export const LoginForm = styled.View`
-    width: 100%;
+    min-width: 90%;
+    max-width: 90%;
 `;
 
 export const Text = styled.Text`
     margin-top: 20px;
 `;
 
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput<TextInputProps>`
+    width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     width: 100%;
     font-size: 26px;
-    padding: 10px 20px;
+    height: 48px;
     margin-top: 10px;
+    background-color: white;
+    align-items: stretch;
 `;
 
 export const CadastrarEsqueciSenhaContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 10px;
 `;
 
 export const ButtonContainer = styled.View`

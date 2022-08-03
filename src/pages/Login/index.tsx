@@ -13,7 +13,7 @@ import {
     TextCadastrar,
     ButtonContainer
 } from './styles';
-import { Alert, KeyboardAvoidingView, TouchableOpacity, View } from 'react-native';
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ButtonMain from '../../components/elements/button/buttonMain';
 
@@ -24,8 +24,9 @@ export default function Login({ navigation }: { navigation: NativeStackNavigatio
     const [loading, setLoading] = useState(false);
 
     function handleLogin() {
-        if(!email) Alert.alert("Conta", "Preencha seu email!")
-        if(!password) Alert.alert("Conta", "Preencha sua senha!")
+        Keyboard.dismiss();
+        if(!email) return Alert.alert("Conta", "Preencha seu email!")
+        if(!password) return Alert.alert("Conta", "Preencha sua senha!")
 
         setLoading(true);
         auth()
@@ -37,39 +38,37 @@ export default function Login({ navigation }: { navigation: NativeStackNavigatio
     }
     return (
         <Container>
-            <KeyboardAvoidingView behavior="padding" style={{flex: 1}} >
-                <View style={{flex: 1, justifyContent: "center"}}>
-                    <StatusBar style='auto' />
-                    <View>
+            <KeyboardAvoidingView behavior="padding" style={{flex: 1, justifyContent: "center"}} >
+                <StatusBar style='auto' />
+                <View style={{alignItems: "center"}}>
                         <Image source={require('./assets/logo.jpg')} />
-                    </View>
-
-                    <LoginContainer>
-                        <LoginForm>
-                            <Text>Email:</Text>
-                            <TextInput onChangeText={setEmail} />
-
-                            <Text>Senha:</Text>
-                            <TextInput secureTextEntry={true} onChangeText={setPassword} />
-
-                            <ButtonMain title="Entrar" onClick={handleLogin} isLoading={loading} />
-
-                            <CadastrarEsqueciSenhaContainer>
-                                <ButtonContainer>
-                                <TouchableOpacity onPress={() => navigation.push('Cadastrar')}>
-                                        <TextCadastrar>Criar conta</TextCadastrar>
-                                    </TouchableOpacity>
-                                </ButtonContainer>
-
-                                <ButtonContainer style={{alignItems: "flex-end"}}>
-                                    <TouchableOpacity>
-                                        <TextCadastrar>Esqueci senha</TextCadastrar>
-                                    </TouchableOpacity>
-                                </ButtonContainer>
-                            </CadastrarEsqueciSenhaContainer>
-                        </LoginForm>
-                    </LoginContainer>
                 </View>
+
+                <LoginContainer>
+                    <LoginForm>
+                        <Text>Email:</Text>
+                        <TextInput onChangeText={setEmail} keyboardType="email-address" textContentType="emailAddress" autoCapitalize='none' />
+
+                        <Text>Senha:</Text>
+                        <TextInput secureTextEntry={true} onChangeText={setPassword} autoCapitalize='none' textContentType="password" />
+
+                        <ButtonMain title="Entrar" isLoading={loading} onClick={handleLogin} />
+
+                        <CadastrarEsqueciSenhaContainer>
+                            <ButtonContainer>
+                                <TouchableOpacity onPress={() => navigation.push('Cadastrar')}>
+                                    <TextCadastrar>Criar conta</TextCadastrar>
+                                </TouchableOpacity>
+                            </ButtonContainer>
+
+                            <ButtonContainer style={{alignItems: "flex-end"}}>
+                                <TouchableOpacity onPress={() => navigation.push('Recuperar Senha')}>
+                                    <TextCadastrar>Esqueci senha</TextCadastrar>
+                                </TouchableOpacity>
+                            </ButtonContainer>
+                        </CadastrarEsqueciSenhaContainer>
+                    </LoginForm>
+                </LoginContainer>
             </KeyboardAvoidingView>
         </Container>
     )
