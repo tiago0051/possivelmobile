@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "77982573234",
+    "project_id": "possivel-e3fb7",
+    "storage_bucket": "possivel-e3fb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77982573234:android:5af1a3924bdff773139fab",
+        "android_client_info": {
+          "package_name": "com.possivelmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77982573234-56blk2fuu4artg9u1qki14iujcqpvvju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrytfUgKJB7wZb4EgUxFPfD63bKCQFD4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77982573234-56blk2fuu4artg9u1qki14iujcqpvvju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
