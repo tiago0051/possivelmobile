@@ -40,9 +40,14 @@ export default function Cadastrar({ navigation }: { navigation: NativeStackNavig
 
         auth()
             .createUserWithEmailAndPassword(email.trim(), senha)
-            .then(() => Alert.alert("Conta", "Cadastrado com sucesso"))
-            .catch((error) => console.log(error))
-            .finally(() => setLoading(false));
+            .then(() => {
+                setLoading(false)
+                Alert.alert("Conta", "Cadastrado com sucesso"); navigation.navigate("Login");
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            })
     }
 
     return (

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import auth from '@react-native-firebase/auth';
+
 
 import {
     Container,
@@ -16,8 +16,10 @@ import {
 import { Alert, Keyboard, KeyboardAvoidingView, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ButtonMain from '../../components/elements/button/buttonMain';
+import AuthContext from '../../contexts/auth';
 
 export default function Login({ navigation }: { navigation: NativeStackNavigationProp<any,any> }) {
+    const { signIn } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,12 +31,11 @@ export default function Login({ navigation }: { navigation: NativeStackNavigatio
         if(!password) return Alert.alert("Conta", "Preencha sua senha!")
 
         setLoading(true);
-        auth()
-            .signInWithEmailAndPassword(email.trim(), password)
-            .then((response) => console.log(response))
+        
+        signIn(email, password)
+            .then(() => navigation.push('Dashboard'))
             .catch((error) => console.log(error))
             .finally(() => setLoading(false));
-        
     }
     return (
         <Container>

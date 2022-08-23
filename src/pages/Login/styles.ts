@@ -39,6 +39,7 @@ export const TextInput = styled.TextInput<TextInputProps>`
     margin-top: 10px;
     background-color: white;
     align-items: stretch;
+    padding: 0 20px;
 `;
 
 export const CadastrarEsqueciSenhaContainer = styled.View`
