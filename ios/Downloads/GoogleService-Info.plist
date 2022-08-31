@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>77982573234-o3rviacojqd80bfu0a39fpf29r0c1952.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.77982573234-o3rviacojqd80bfu0a39fpf29r0c1952</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBKfQdq5o8DlL9rzt-4wJICpvGNNUlJQmI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>77982573234</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.possivelmobile</string>
+	<key>PROJECT_ID</key>
+	<string>possivel-e3fb7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>possivel-e3fb7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:77982573234:ios:7dac66da98f572ea139fab</string>
+</dict>
+</plist>
