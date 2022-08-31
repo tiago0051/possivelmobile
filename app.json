@@ -8,6 +8,13 @@
     ],
     "android": {
       "package": "com.possivelmobile"
-    }
+    },
+    "ios": {
+      "bundleIdentifier": "com.possivelmobile",
+      "useFrameworks": "static"
+    },
+    "plugins": [
+      "expo-build-properties"
+    ]
   }
 }
