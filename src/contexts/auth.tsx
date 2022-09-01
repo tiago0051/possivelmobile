@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, ReactElement, ReactNode, useState } from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import {
   NavigationContainer,
@@ -19,9 +19,9 @@ interface AuthContextData {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
-const Stack = createNativeStackNavigator()
-
-export const AuthProvider: React.FC = () => {
+export const AuthProvider: React.FC<{
+  children: ReactElement | ReactElement[]
+}> = ({ children }) => {
   const [user, setUser] = useState<FirebaseAuthTypes.User>()
   const signed = user !== undefined
 
@@ -37,19 +37,7 @@ export const AuthProvider: React.FC = () => {
 
   return (
     <AuthContext.Provider value={{ signed, user, signIn, signOut }}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {!user ? (
-            <>
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Cadastrar" component={Cadastrar} />
-              <Stack.Screen name="Recuperar Senha" component={RecuperarSenha} />
-            </>
-          ) : (
-            <Stack.Screen name="Dashboard" component={Routes} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+      {children}
     </AuthContext.Provider>
   )
 }
