@@ -15,7 +15,7 @@ const RoutesMain = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {user ? (
+        {!user ? (
           <>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Cadastrar" component={Cadastrar} />

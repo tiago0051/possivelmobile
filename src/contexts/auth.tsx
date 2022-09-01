@@ -1,17 +1,14 @@
-import React, { createContext, ReactElement, ReactNode, useState } from 'react'
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
-import {
-  NavigationContainer,
-  NavigationContext
-} from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Login from '../pages/Login'
-import Cadastrar from '../pages/Login/Cadastrar'
-import RecuperarSenha from '../pages/Login/RecuperarSenha'
-import Routes from '../pages/dashboard'
+import React, {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState
+} from 'react'
+import auth, { firebase, FirebaseAuthTypes } from '@react-native-firebase/auth'
+import ExpoSecurity from 'expo-secure-store'
 
 interface AuthContextData {
-  signed: boolean
   user: FirebaseAuthTypes.User | undefined
   signIn(email: string, senha: string): Promise<void>
   signOut(): void
@@ -23,7 +20,7 @@ export const AuthProvider: React.FC<{
   children: ReactElement | ReactElement[]
 }> = ({ children }) => {
   const [user, setUser] = useState<FirebaseAuthTypes.User>()
-  const signed = user !== undefined
+  const [initializing, setInitializing] = useState(true)
 
   async function signIn(email: string, senha: string) {
     const response = await auth().signInWithEmailAndPassword(email, senha)
@@ -32,11 +29,21 @@ export const AuthProvider: React.FC<{
   }
 
   function signOut() {
-    setUser(undefined)
+    auth().signOut()
   }
 
+  function onAuthStateChanged(user: any) {
+    setUser(user)
+    if (initializing) setInitializing(false)
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
+    return subscriber // unsubscribe on unmount
+  })
+
   return (
-    <AuthContext.Provider value={{ signed, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
